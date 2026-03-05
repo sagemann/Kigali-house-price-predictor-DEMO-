@@ -25,11 +25,9 @@ def predict_price(house: House):
 
     predicted = model.predict(input_df)[0]
 
-    # Make a range (simple ±10% for uncertainty)
     low = predicted * 0.9
     high = predicted * 1.1
 
-    # What we'll save to Mongo
     record = {
         "input": house.dict(),
         "predicted_price_millions_rwf": round(float(predicted), 1),
@@ -38,10 +36,8 @@ def predict_price(house: House):
         "note": "Predicted by Random Forest uncles"
     }
 
-    # Save it
     collection.insert_one(record)
 
-    # Return to whoever called the API
     return {
         "status": "success",
         "predicted_price": round(float(predicted), 1),
