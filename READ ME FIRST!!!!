@@ -1,0 +1,26 @@
+# Kigali House Price Predictor
+
+Project for software dev course – predicts house prices in Kigali to help make ABC platform fairer.
+
+## Files
+- house_price_notebook.ipynb → data + model training
+- api.py → FastAPI backend
+- app.py → Streamlit web app (nice UI)
+- kigali_house_model.pkl → saved model
+- requirements.txt → packages to install
+
+## How to run (for teacher)
+1. pip install -r requirements.txt
+2. Start MongoDB (if using DB part)
+3. python -m uvicorn api:app --reload   → API on http://127.0.0.1:8000
+4. streamlit run app.py                 → web app in browser
+
+Test with Postman: POST http://127.0.0.1:8000/predict
+Example body:
+```json
+{
+  "neighborhood": "Kiyovu",
+  "plot_size_sqm": 500,
+  "bedrooms": 4,
+  "bathrooms": 3
+}
